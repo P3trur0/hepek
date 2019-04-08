@@ -28,3 +28,7 @@ bin/
 .ensime_cache/
 
 .idea/
+
+#Metals
+.bloop/
+.metals/
