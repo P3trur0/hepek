@@ -1,13 +1,11 @@
 package ba.sake.hepek.bulma.component
 
-import scalatags.Text
 import scalatags.Text.all._
 
 object PanelComponents extends PanelComponents
 
-sealed trait PanelElement {
+sealed trait PanelElement extends BulmaElement {
   def fragments: Seq[Frag]
-  def content: Text.TypedTag[String]
 }
 
 case class PanelTab(fragments: Frag*) extends PanelElement {

@@ -1,5 +1,6 @@
 package ba.sake.hepek.bulma
 
+import scalatags.Text
 import scalatags.Text.all._
 
 package object component {
@@ -18,6 +19,19 @@ package object component {
   case object Toggle extends AttributeClass("is-toggle")
   case object Boxed  extends AttributeClass("is-boxed")
 
-  def cssClasses(attributes: List[AttributeClass]): String =
-    attributes.foldRight("")((attribute, str) => s" ${attribute.classname}$str")
+  def cssClasses(attributes: Seq[AttributeClass]): String = {
+    val classes = attributes
+      .foldLeft("")((str, attribute) => s"$str ${attribute.classname}")
+    if (classes.equals(" "))
+      ""
+    else
+      classes
+  }
+
+  trait BulmaElement {
+    def content: Text.TypedTag[String]
+  }
+
+  def getElementContent(opt: Option[BulmaElement]): Frag =
+    opt.fold[Frag](SeqFrag[String](List()))(_.content)
 }
