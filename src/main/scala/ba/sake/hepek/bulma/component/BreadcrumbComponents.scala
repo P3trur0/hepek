@@ -15,7 +15,7 @@ trait BreadcrumbComponents {
   def mediumBreadcrumb(content: Frag*) = customBreadcrumb(List(Medium))(content)
   def largeBreadcrumb(content: Frag*)  = customBreadcrumb(List(Large))(content)
 
-  def customBreadcrumb(attributes: List[AttributeClass])(content: Frag*) =
+  def customBreadcrumb(attributes: List[BulmaModifier])(content: Frag*) =
     tag("nav")(cls := s"breadcrumb${cssClasses(attributes)}")(ul(for {
       elem <- content
     } yield li(elem)))

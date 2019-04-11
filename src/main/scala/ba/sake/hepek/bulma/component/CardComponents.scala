@@ -6,7 +6,7 @@ object CardComponents extends CardComponents
 
 trait CardHeader extends BulmaElement {
 
-  def contentBuilder(attributeClass: AttributeClass*)(title: String, iconClass: Option[String]) =
+  def contentBuilder(attributeClass: BulmaModifier*)(title: String, iconClass: Option[String]) =
     header(cls := "card-header")(
       p(cls := s"card-header-title${cssClasses(attributeClass)}", title),
       iconClass.fold[Frag](SeqFrag[String](List()))(

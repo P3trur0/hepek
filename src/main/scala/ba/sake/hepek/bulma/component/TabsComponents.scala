@@ -8,6 +8,6 @@ trait TabsComponents {
   //Tabs only require a tabs container and a <ul> list.
   def tabsContainer(content: Frag*) = ul(cls := "tabs")(content)
 
-  def customTabsContainer(attributes: List[AttributeClass])(content: Frag*) =
+  def customTabsContainer(attributes: List[BulmaModifier])(content: Frag*) =
     ul(cls := s"tabs${cssClasses(attributes)}")(content)
 }

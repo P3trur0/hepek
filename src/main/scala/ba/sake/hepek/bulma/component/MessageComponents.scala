@@ -13,7 +13,7 @@ trait MessageComponents {
   def completeMessage(header: Frag*)(body: Frag*) =
     completeStyledMessage(EmptyAttribute)(header)(body)
 
-  def completeStyledMessage(color: AttributeClass)(header: Frag*)(body: Frag*) = {
+  def completeStyledMessage(color: BulmaModifier)(header: Frag*)(body: Frag*) = {
     val cssClassValues = s"message${cssClasses(List(color))}"
     header.size match {
       case 0 => tag("article")(cls := cssClassValues, messageBody(body))
