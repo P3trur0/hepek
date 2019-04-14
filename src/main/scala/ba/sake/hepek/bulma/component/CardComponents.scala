@@ -51,13 +51,13 @@ trait CardComponents {
 
   def card(header: Option[CardHeader],
            image: Option[CardImage],
-           content: CardContent,
+           cardContent: CardContent,
            footer: Option[CardFooter]) =
     div(cls := "card")(
-      getElementContent(header),
-      getElementContent(image),
-      content.content,
-      getElementContent(footer)
+      optionalElementContent(header),
+      optionalElementContent(image),
+      cardContent.content,
+      optionalElementContent(footer)
     )
 
 }

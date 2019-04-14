@@ -42,6 +42,8 @@ package object component {
   case object Invisible    extends BulmaModifier("is-invisible")
   case object SrOnly       extends BulmaModifier("is-sr-only")
 
+  case object Active extends BulmaModifier("is-active")
+
   def cssClasses(attributes: Seq[BulmaModifier]): String = {
     val classes = attributes
       .foldLeft("")((str, attribute) => s"$str ${attribute.classname}")
@@ -52,9 +54,9 @@ package object component {
   }
 
   trait BulmaElement {
-    def content: Text.TypedTag[String]
+    def content: Frag
   }
 
-  def getElementContent(opt: Option[BulmaElement]): Frag =
+  def optionalElementContent(opt: Option[BulmaElement]): Frag =
     opt.fold[Frag](SeqFrag[String](List()))(_.content)
 }
