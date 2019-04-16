@@ -1,5 +1,6 @@
 package ba.sake.hepek.bulma.component
 
+import ba.sake.hepek.bulma._
 import scalatags.Text.all._
 
 object CardComponents extends CardComponents

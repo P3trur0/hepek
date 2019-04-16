@@ -1,5 +1,6 @@
 package ba.sake.hepek.bulma.component
 
+import ba.sake.hepek.bulma.{BulmaModifier, EmptyAttribute}
 import scalatags.Text.all._
 
 object MessageComponents extends MessageComponents

@@ -1,5 +1,6 @@
 package ba.sake.hepek.bulma.component
 
+import ba.sake.hepek.bulma.Large
 import scalatags.Text.all._
 
 object ModalComponents extends ModalComponents
@@ -13,6 +14,7 @@ case class ModalCardFooterContent(elements: Frag*) extends BulmaElement {
 }
 
 trait ModalComponents {
+
   def modal(content: Frag*) =
     div(cls := "modal")(
       div(cls := "modal-background"),
@@ -26,9 +28,9 @@ trait ModalComponents {
     div(cls := "modal")(
       div(cls := "modal-background"),
       div(cls := "modal-card")(
-        header(cls:= "modal-card-head")(
-          p(cls:="modal-card-title")(modalTitle),
-          button(cls:="delete", aria.label := "close")
+        header(cls := "modal-card-head")(
+          p(cls := "modal-card-title")(modalTitle),
+          button(cls := "delete", aria.label := "close")
         ),
         cardContent.content,
         optionalElementContent(cardFooter)
