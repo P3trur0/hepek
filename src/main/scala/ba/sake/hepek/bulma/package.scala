@@ -41,9 +41,13 @@ case object Invisible    extends BulmaModifier("is-invisible")
 case object SrOnly       extends BulmaModifier("is-sr-only")
 
 case object Active  extends BulmaModifier("is-active")
-case class Current() extends BulmaModifier("is-current")
+case object Current extends BulmaModifier("is-current")
 
 package object component {
+
+  def cssClass(attribute: BulmaModifier): String = {
+    cssClasses(Seq(attribute))
+  }
 
   def cssClasses(attributes: Seq[BulmaModifier]): String = {
     val classes = attributes

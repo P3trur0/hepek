@@ -1,8 +1,7 @@
 package ba.sake.hepek.bulma.component
 
-import scalatags.Text
-import scalatags.Text.all._
 import ba.sake.hepek.bulma._
+import scalatags.Text.all._
 
 object PaginationComponents extends PaginationComponents
 
@@ -19,26 +18,22 @@ case object PaginationEllipsis extends PaginationElement {
   override def content = a(cls := "pagination-ellipsis")(raw("&hellip;"))
 }
 
-case class PaginationNumber(number: Integer, current: Option[Current]) extends PaginationElement {
-  override def content =
-    li(a(cls := s"pagination-link${optionalModifier(current)}", number.toString()))
+case class PaginationNumber(number: Integer, isCurrent: Boolean) extends PaginationElement {
+  override def content = {
+    val current: BulmaModifier = if(isCurrent) Current else EmptyAttribute
+    li(a(cls := s"pagination-link${cssClass(current)}", number.toString()))
+  }
 }
 
 case class PaginationList(elements: Seq[PaginationNumber]) extends PaginationElement {
-  override def content = ul(cls := "pagination-list")(
-    for {
-      element <- elements
-    } yield element.content
-  )
+  override def content = ul(cls := "pagination-list")(elements.map(_.content))
 }
 
 trait PaginationComponents {
 
   def pagination(elements: PaginationElement*) =
     tag("nav")(cls := "pagination", role := "navigation", aria.label := "pagination")(
-      for {
-        element <- elements
-      } yield element.content
+      elements.map(_.content)
     )
 
 }
