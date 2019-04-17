@@ -42,6 +42,9 @@ case object SrOnly       extends BulmaModifier("is-sr-only")
 
 case object Active  extends BulmaModifier("is-active")
 case object Current extends BulmaModifier("is-current")
+case object Expanded extends BulmaModifier("is-expanded")
+case object Tab extends BulmaModifier("is-tab")
+case object Transparent extends BulmaModifier("is-transparent")
 
 package object component {
 

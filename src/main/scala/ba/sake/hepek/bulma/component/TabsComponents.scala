@@ -1,6 +1,7 @@
 package ba.sake.hepek.bulma.component
 
 import scalatags.Text.all._
+import ba.sake.hepek.bulma.BulmaModifier
 
 object TabsComponents extends TabsComponents
 
