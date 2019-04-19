@@ -20,7 +20,7 @@ case object PaginationEllipsis extends PaginationElement {
 
 case class PaginationNumber(number: Integer, isCurrent: Boolean) extends PaginationElement {
   override def content = {
-    val current: BulmaModifier = if(isCurrent) Current else EmptyAttribute
+    val current: BulmaModifier = if (isCurrent) Current else EmptyAttribute
     li(a(cls := s"pagination-link${cssClass(current)}", number.toString()))
   }
 }

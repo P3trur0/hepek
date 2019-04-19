@@ -5,21 +5,7 @@ import ba.sake.hepek.matchers.HepekMatchers
 import org.scalatest.{FlatSpec, Matchers}
 import scalatags.Text.all._
 
-/*
-<header class="card-header">
-    <p class="card-header-title">
-      Component
-    </p>
-    <a href="#" class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </a>
-  </header>
- */
-
 object BulmaCardPage extends CardComponents {
-
   def header = DefaultHeader("Component")
   def image  = CardImage("path.png")
   def footer = CardFooter(p("element"), p("element2"))
@@ -30,9 +16,7 @@ object BulmaCardPage extends CardComponents {
                   li("one"),
                   li("two")
                 ))
-
   def cardExample = card(Some(header), Some(image), contentData, Some(footer))
-
 }
 
 class CardComponentsSpec extends FlatSpec with Matchers with HepekMatchers {

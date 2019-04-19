@@ -1,6 +1,6 @@
 package ba.sake.hepek.bulma.component
 
-import ba.sake.hepek.bulma.{Active, BulmaModifier, EmptyAttribute}
+import ba.sake.hepek.bulma.{Active, BulmaModifier, EmptyAttribute, Transparent}
 import scalatags.Text
 import scalatags.Text.all._
 
@@ -33,6 +33,13 @@ case class AnchorNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends 
 case class DivNavbarItem(modifiers: BulmaModifier*)(elements: Frag*) extends NavbarItem {
   override def content: Text.all.Frag = div(cls := s"navbar-item${cssClasses(modifiers)}")(elements)
 }
+case class PlainAnchorNavbarItem(elements: Frag*) extends NavbarItem {
+  override def content: Text.all.Frag = a(cls := s"navbar-item")(elements)
+}
+
+case class PlainDivNavbarItem(elements: Frag*) extends NavbarItem {
+  override def content: Text.all.Frag = div(cls := s"navbar-item")(elements)
+}
 
 case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
     extends NavbarElement {
@@ -42,8 +49,7 @@ case class NavbarBrand(hamburger: Option[NavbarHamburger], items: NavbarItem*)
   )
 }
 
-case class NavbarDropdown(items: NavbarItem*)
-    extends NavbarElement {
+case class NavbarDropdown(items: NavbarItem*) extends NavbarElement {
   override def content: Text.all.Frag = div(cls := "navbar-dropdown")(
     items.map(_.content)
   )
@@ -58,12 +64,13 @@ case class NavbarMenu(active: Boolean)(startItems: NavbarItem*)(endItems: Navbar
 }
 
 trait NavbarComponents {
-  import ba.sake.hepek.bulma.Transparent
-  def transparentNavbar(elements: NavbarElement*) = buildNavbar(Transparent) _
-  def navbar(elements: NavbarElement*)            = buildNavbar(EmptyAttribute) _
+  def transparentNavbar(elements: NavbarElement*) = buildNavbar(Transparent, elements: _*)
+  def navbar(elements: NavbarElement*)            = buildNavbar(EmptyAttribute, elements: _*)
 
-  private def buildNavbar(modifiers: BulmaModifier*)(elements: NavbarElement*) =
-    tag("nav")(cls := "navbar", role := "navigation", aria.label := "main navigation")(
+  private def buildNavbar(modifier: BulmaModifier, elements: NavbarElement*) =
+    tag("nav")(cls := s"navbar${cssClass(modifier)}",
+               role := "navigation",
+               aria.label := "main navigation")(
       elements.map(_.content)
     )
 }

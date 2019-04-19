@@ -9,9 +9,9 @@ trait BulmaDependencies extends PageDependencies {
   def bulmaSettings: ComponentSettings =
     ComponentSettings("0.7.4", bulmaFilename, DependencyProvider.cdnjs)
 
-  def bulmaDependencies = ComponentDependencies().withJsDependencies(
+  def bulmaDependencies = ComponentDependencies().withCssDependencies(
     Dependencies().withDeps(
-      Dependency(s"$bulmaFilename.min.css", bulmaSettings.version, bulmaSettings.pkg)
+      Dependency(s"css/$bulmaFilename.min.css", bulmaSettings.version, bulmaSettings.pkg)
     )
   )
 
